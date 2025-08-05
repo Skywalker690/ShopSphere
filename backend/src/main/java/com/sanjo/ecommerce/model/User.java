@@ -1,5 +1,6 @@
 package com.sanjo.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sanjo.ecommerce.domain.User_Role;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +20,7 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Name is required")
@@ -38,8 +39,11 @@ public class User {
     //By default Customer
     private User_Role role = User_Role.ROLE_CUSTOMER;
 
+    @OneToMany
     private Set<Address> address = new HashSet<Address>();
 
+    @ManyToMany
+    @JsonIgnore  //This will not come on front end
     private Set<Coupon> usedCoupons = new HashSet<Coupon>();
 
 }
