@@ -2,7 +2,7 @@ package com.sanjo.ecommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sanjo.ecommerce.domain.User_Role;
+import com.sanjo.ecommerce.domain.USER_ROLE;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,13 +37,13 @@ public class User {
     private String password;
 
     //By default Customer
-    private User_Role role = User_Role.ROLE_CUSTOMER;
+    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
     @OneToMany
-    private Set<Address> address = new HashSet<Address>();
+    private Set<Address> address = new HashSet<>();
 
     @ManyToMany
     @JsonIgnore  //This will not come on front end
-    private Set<Coupon> usedCoupons = new HashSet<Coupon>();
+    private Set<Coupon> usedCoupons = new HashSet<>();
 
 }
