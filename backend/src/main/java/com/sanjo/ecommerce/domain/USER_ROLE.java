@@ -1,6 +1,6 @@
 package com.sanjo.ecommerce.domain;
 
-public enum User_Role {
+public enum USER_ROLE {
 
     ROLE_ADMIN,
     ROLE_CUSTOMER,
