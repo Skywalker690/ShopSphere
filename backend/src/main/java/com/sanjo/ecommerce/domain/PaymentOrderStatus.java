@@ -1,4 +1,4 @@
-package com.sanjo.ecommerce.model;
+package com.sanjo.ecommerce.domain;
 
 public enum PaymentOrderStatus {
     PENDING,FAILED,SUCCESS
