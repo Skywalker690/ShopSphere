@@ -24,7 +24,7 @@ public class JwtProvider{
 
         return Jwts.builder()
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime()+86400000)) //24Hr
+                .setExpiration(new Date(new Date().getTime()+86400000)) //24Hr78
                 .claim("email",auth.getName())
                 .claim("authorities",roles)
                 .signWith(key)
@@ -48,3 +48,4 @@ public class JwtProvider{
         return String.join(",",auths);
     }
 }
+
