@@ -1,7 +1,9 @@
 package com.sanjo.ecommerce.service.impl;
 
 import com.sanjo.ecommerce.domain.USER_ROLE;
+import com.sanjo.ecommerce.model.Seller;
 import com.sanjo.ecommerce.model.User;
+import com.sanjo.ecommerce.repository.SellerRepository;
 import com.sanjo.ecommerce.repository.UserRepository;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,12 +20,18 @@ import java.util.List;
 public class CustomUserServiceImpl implements UserDetailsService {
 
     private UserRepository userRepository;
+    private SellerRepository sellerRepository;
     private static final String SELLER_PREFIX = "seller_";
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if(username.startsWith(SELLER_PREFIX)){
+            String actualUsername = username.substring(SELLER_PREFIX.length());
+            Seller seller =sellerRepository.findByEmail(actualUsername);
 
+            if(seller != null){
+                return buildUserDetails(seller.getEmail(),seller.getPassword(),seller.getRole());
+            }
         }else {
             User user = userRepository.findByEmail(username);
             if(user != null){
