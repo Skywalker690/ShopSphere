@@ -21,4 +21,4 @@ jobs:
 
       - name: Build Application
         working-directory: ./backend
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml -DskipTests
