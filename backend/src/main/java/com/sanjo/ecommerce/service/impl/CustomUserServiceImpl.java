@@ -5,7 +5,7 @@ import com.sanjo.ecommerce.model.Seller;
 import com.sanjo.ecommerce.model.User;
 import com.sanjo.ecommerce.repository.SellerRepository;
 import com.sanjo.ecommerce.repository.UserRepository;
-import jakarta.validation.constraints.NotBlank;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserServiceImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private SellerRepository sellerRepository;
+    private final UserRepository userRepository;
+    private final SellerRepository sellerRepository;
     private static final String SELLER_PREFIX = "seller_";
 
     @Override
@@ -41,7 +42,7 @@ public class CustomUserServiceImpl implements UserDetailsService {
         throw new UsernameNotFoundException("User or Seller Not Found "+username);
     }
 
-    private UserDetails buildUserDetails(@NotBlank(message = "Email is required") String email, String password, USER_ROLE role) {
+    private UserDetails buildUserDetails(String email, String password, USER_ROLE role) {
         if(role == null) role =USER_ROLE.ROLE_CUSTOMER;
 
         List<GrantedAuthority> authorityList = new ArrayList<>();
