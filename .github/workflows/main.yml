@@ -18,6 +18,7 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: 17
-      - name : Build Application
-        run :
-          mvn -B package --file pom.xml
+
+      - name: Build Application
+        working-directory: ./backend
+        run: mvn -B package --file pom.xml
