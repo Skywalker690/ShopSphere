@@ -34,3 +34,4 @@ build/
 .vscode/
 
 .env
+/backend/src/main/resources/application-dev.properties
