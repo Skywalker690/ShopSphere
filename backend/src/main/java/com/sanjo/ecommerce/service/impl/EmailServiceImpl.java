@@ -1,5 +1,6 @@
 package com.sanjo.ecommerce.service.impl;
 
+import com.sanjo.ecommerce.service.repo.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +13,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class EmailService {
+public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
 
-    @Value("${EMAIL_USERNAME}")
+    @Value("${spring.mail.username}")
     private  String fromAddress;
 
     public void sendEmail(String email, String otp, String subject, String text) throws MessagingException {
