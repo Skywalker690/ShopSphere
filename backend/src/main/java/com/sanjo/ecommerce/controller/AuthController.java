@@ -3,6 +3,7 @@ package com.sanjo.ecommerce.controller;
 import com.sanjo.ecommerce.domain.USER_ROLE;
 import com.sanjo.ecommerce.model.VerificationCode;
 import com.sanjo.ecommerce.repository.UserRepository;
+import com.sanjo.ecommerce.request.LoginRequest;
 import com.sanjo.ecommerce.response.ApiResponse;
 import com.sanjo.ecommerce.response.AuthResponse;
 import com.sanjo.ecommerce.response.SignupRequest;
@@ -41,6 +42,13 @@ public class AuthController {
         ApiResponse response = new ApiResponse();
         response.setMessage("OTP Sent Successfully ");
 
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> loginHandler(@RequestBody LoginRequest request) throws Exception {
+
+        AuthResponse response =authService.signIn(request);
         return ResponseEntity.ok(response);
     }
 
