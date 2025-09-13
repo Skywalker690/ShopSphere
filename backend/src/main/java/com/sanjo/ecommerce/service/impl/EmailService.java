@@ -18,7 +18,7 @@ public class EmailService {
     @Value("${EMAIL_USERNAME}")
     private  String fromAddress;
 
-    public void sendOtp(String email, String otp, String subject, String text) throws MessagingException {
+    public void sendEmail(String email, String otp, String subject, String text) throws MessagingException {
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
