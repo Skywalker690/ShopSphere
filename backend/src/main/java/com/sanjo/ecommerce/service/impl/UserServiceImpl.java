@@ -5,11 +5,11 @@ import com.sanjo.ecommerce.exception.OurException;
 import com.sanjo.ecommerce.model.User;
 import com.sanjo.ecommerce.repository.UserRepository;
 import com.sanjo.ecommerce.service.repo.UserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
